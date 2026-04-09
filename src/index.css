@@ -1,0 +1,441 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  /* Backgrounds */
+  --bg-app: #f5f5f3;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #f9f9f8;
+  --bg-input: #ffffff;
+
+  /* Borders */
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-default: rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --border-active: #0f62fe;
+
+  /* Text */
+  --text-primary: #0a0a0a;
+  --text-secondary: #525252;
+  --text-muted: #a3a3a3;
+  --text-inverse: #ffffff;
+
+  /* Brand accent — deep blue, not electric */
+  --accent: #0f62fe;
+  --accent-dim: rgba(15, 98, 254, 0.08);
+  --accent-hover: #0043ce;
+
+  /* Semantic */
+  --positive: #0a7153;
+  --positive-dim: rgba(10, 113, 83, 0.08);
+  --negative: #c21b17;
+  --negative-dim: rgba(194, 27, 23, 0.08);
+  --warning: #b45309;
+  --warning-dim: rgba(180, 83, 9, 0.08);
+  --ai-purple: #6d28d9;
+  --ai-dim: rgba(109, 40, 217, 0.08);
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --financial-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Visually hidden; announced by screen readers when live region content updates */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+html {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utility classes to use throughout components */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.financial-num {
+  font-family: var(--financial-mono);
+}
+
+.interactive-transition {
+  transition: all 0.15s ease;
+}
+
+.preset-card,
+.scenario-row,
+.tab-btn,
+.copy-btn,
+.retry-btn,
+.accordion-header {
+  transition: all 0.15s ease;
+}
+
+@media (hover: hover) {
+  .interactive-surface:hover {
+    background: var(--bg-card) !important;
+  }
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+textarea {
+  outline: none;
+}
+
+input[type="text"]:focus-visible,
+input[type="search"]:focus-visible,
+input[type="number"]:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #a3a3a3;
+}
+
+.metric-large {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.metric-medium {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.card-elevated {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+
+.font-mono-data {
+  font-family: var(--font-mono);
+}
+
+.footer-link {
+  color: #a3a3a3;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  color: #525252;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ai-shimmer {
+  background: linear-gradient(
+    90deg,
+    #f0f0ee 25%,
+    #e8e8e6 50%,
+    #f0f0ee 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.ai-col-shimmer-line {
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    #f0f0ee 25%,
+    #e8e8e6 50%,
+    #f0f0ee 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+}
+
+@keyframes pulse-red-once {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 12px 2px color-mix(in srgb, var(--negative) 45%, transparent);
+  }
+}
+
+.pulse-negative-once {
+  animation: pulse-red-once 0.6s ease-out 1;
+}
+
+@keyframes count-pop {
+  from {
+    opacity: 0.6;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metric-pop {
+  animation: count-pop 0.3s ease-out;
+}
+
+@keyframes metric-flash-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.metric-flash-mount {
+  animation: metric-flash-fade 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes ai-status-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.ai-status-dot--loading {
+  animation: ai-status-pulse 1.5s ease infinite;
+}
+
+.portfolio-slider-wrap {
+  --range-pct: 0%;
+}
+
+.portfolio-slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.portfolio-slider:focus {
+  outline: none;
+}
+
+.portfolio-slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0%,
+    var(--accent) var(--range-pct),
+    #e5e5e5 var(--range-pct),
+    #e5e5e5 100%
+  );
+}
+
+.portfolio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--accent);
+  margin-top: -5.5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, border-color 0.15s ease,
+    background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.portfolio-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.08);
+  border-color: var(--accent-hover);
+}
+
+.portfolio-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.portfolio-slider::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: #e5e5e5;
+}
+
+.portfolio-slider::-moz-range-progress {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.portfolio-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, border-color 0.15s ease,
+    background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.portfolio-slider:hover::-moz-range-thumb {
+  transform: scale(1.08);
+  border-color: var(--accent-hover);
+}
+
+.portfolio-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.preset-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.15s ease;
+}
+
+.preset-card:hover:not(.preset-card--active) {
+  border-color: rgba(0, 0, 0, 0.16);
+  background: #ffffff;
+}
+
+.preset-card--active {
+  border-color: var(--accent) !important;
+  background: #eff4ff;
+}
+
+.preset-card:focus-visible,
+.scenario-row:focus-visible,
+.tab-btn:focus-visible,
+.copy-btn:focus-visible,
+.retry-btn:focus-visible,
+.accordion-header:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respect OS “reduce motion” — drop decorative animation; keep layout/state changes instant. */
+@media (prefers-reduced-motion: reduce) {
+  .ai-shimmer,
+  .ai-col-shimmer-line {
+    animation: none;
+    background: #e8e8e6;
+    background-size: 100% 100%;
+  }
+
+  .pulse-negative-once,
+  .metric-pop,
+  .metric-flash-mount,
+  .ai-status-dot--loading {
+    animation: none;
+  }
+
+  .metric-flash-mount {
+    transition: none;
+  }
+
+  .ai-status-dot--loading {
+    opacity: 1;
+  }
+
+  .portfolio-slider {
+    transition: none;
+  }
+
+  .portfolio-slider:hover::-webkit-slider-thumb,
+  .portfolio-slider:hover::-moz-range-thumb {
+    transform: none;
+  }
+
+  .interactive-transition,
+  .preset-card,
+  .scenario-row,
+  .tab-btn,
+  .copy-btn,
+  .retry-btn,
+  .accordion-header,
+  .footer-link {
+    transition: none;
+  }
+}
