@@ -5,3 +5,8 @@ dist
 .env.*
 !.env.example
 .DS_Store
+
+# Editor / IDE (not required to build or run the app)
+.cursor/
+.vscode/
+.idea/
